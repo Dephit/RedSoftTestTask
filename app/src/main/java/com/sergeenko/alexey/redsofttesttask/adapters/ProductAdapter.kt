@@ -1,4 +1,4 @@
-package com.sergeenko.alexey.redsofttesttask.fragments
+package com.sergeenko.alexey.redsofttesttask.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,10 +7,14 @@ import androidx.databinding.DataBindingUtil
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.sergeenko.alexey.redsofttesttask.api.Product
+import com.sergeenko.alexey.redsofttesttask.dataClasses.Product
 import com.sergeenko.alexey.redsofttesttask.databinding.ProductBinding
+import com.sergeenko.alexey.redsofttesttask.basket.Basket
+import com.sergeenko.alexey.redsofttesttask.handlers.ProductPressHandler
 
-class ProductAdapter(private var basket: Basket) : PagedListAdapter<Product, RecyclerView.ViewHolder>(UserDiffCallback) {
+class ProductAdapter(private var basket: Basket) : PagedListAdapter<Product, RecyclerView.ViewHolder>(
+    UserDiffCallback
+) {
     private val myHandler =
         ProductPressHandler(basket)
 
@@ -31,7 +35,7 @@ class ProductAdapter(private var basket: Basket) : PagedListAdapter<Product, Rec
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        getItem(position)?.let { basket.checkBasket(it) }
+        getItem(position)?.let { Basket.checkBasket(it) }
         (holder as ProductViewHolder).binding?.apply {
             handler = myHandler
             product = getItem(position)

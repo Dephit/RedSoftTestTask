@@ -1,8 +1,8 @@
-package com.sergeenko.alexey.redsofttesttask.fragments
+package com.sergeenko.alexey.redsofttesttask.utils
 
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource
-import com.sergeenko.alexey.redsofttesttask.api.Product
+import com.sergeenko.alexey.redsofttesttask.dataClasses.Product
 import com.sergeenko.alexey.redsofttesttask.api.RedSoftApi
 
 class UsersDataSourceFactory(private val api: RedSoftApi) : DataSource.Factory<Long, Product>() {

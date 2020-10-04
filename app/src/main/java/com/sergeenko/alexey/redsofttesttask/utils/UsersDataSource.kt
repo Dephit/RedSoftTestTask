@@ -1,15 +1,16 @@
-package com.sergeenko.alexey.redsofttesttask.fragments
+package com.sergeenko.alexey.redsofttesttask.utils
 
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.ItemKeyedDataSource
 import com.sergeenko.alexey.redsofttesttask.api.*
+import com.sergeenko.alexey.redsofttesttask.dataClasses.Product
+import com.sergeenko.alexey.redsofttesttask.dataClasses.Products
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.awaitResponse
 
 class UsersDataSource(private val api: RedSoftApi, private var searchText: String = "") : ItemKeyedDataSource<Long, Product>() {
 

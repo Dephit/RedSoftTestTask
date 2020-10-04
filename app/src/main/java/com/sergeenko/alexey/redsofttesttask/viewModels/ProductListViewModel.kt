@@ -1,16 +1,15 @@
-package com.sergeenko.alexey.redsofttesttask.fragments
+package com.sergeenko.alexey.redsofttesttask.viewModels
 
-import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
-import com.sergeenko.alexey.redsofttesttask.api.Product
-import com.sergeenko.alexey.redsofttesttask.api.pageSize
+import com.sergeenko.alexey.redsofttesttask.dataClasses.Product
+import com.sergeenko.alexey.redsofttesttask.utils.pageSize
+import com.sergeenko.alexey.redsofttesttask.utils.UsersDataSourceFactory
 
 class ProductListViewModel() : BaseModel() {
 
-    val basket: Basket = Basket(mutableListOf())
     var userList: LiveData<PagedList<Product>>
     private val sourceFactory: UsersDataSourceFactory = UsersDataSourceFactory(api)
 
@@ -20,7 +19,7 @@ class ProductListViewModel() : BaseModel() {
         sourceFactory.usersDataSourceLiveData.value?.refresh()
     }
 
-    fun searchProducts(newText: String?) {
+    fun searchProducts(newText: String? = "") {
         newText?.let {
             sourceFactory.search(it)
             sourceFactory.usersDataSourceLiveData.value!!.invalidate()

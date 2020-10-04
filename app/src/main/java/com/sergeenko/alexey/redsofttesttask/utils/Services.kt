@@ -1,23 +1,12 @@
-package com.sergeenko.alexey.redsofttesttask.dagger
+package com.sergeenko.alexey.redsofttesttask.utils
 
-import android.app.Application
-import com.google.gson.FieldNamingPolicy
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
-import com.sergeenko.alexey.redsofttesttask.activities.BaseActivity
 import com.sergeenko.alexey.redsofttesttask.api.RedSoftApi
-import dagger.Component
-import dagger.Module
-import dagger.Provides
-import okhttp3.Cache
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.util.concurrent.TimeUnit
-import javax.inject.Singleton
 
 class ServiceInterceptor : Interceptor{
 
@@ -43,7 +32,6 @@ object NetworkService {
 
     private const val BASE_URL = "https://rstestapi.redsoftdigital.com/"
 
-    // HttpLoggingInterceptor выводит подробности сетевого запроса в логи
     private val loggingInterceptor = run {
         val httpLoggingInterceptor = HttpLoggingInterceptor()
         httpLoggingInterceptor.apply {

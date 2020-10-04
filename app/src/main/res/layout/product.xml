@@ -7,31 +7,31 @@
         <import type="android.view.View"/>
         <variable
             name="product"
-            type="com.sergeenko.alexey.redsofttesttask.api.Product" />
+            type="com.sergeenko.alexey.redsofttesttask.dataClasses.Product" />
 
         <variable
             name="handler"
-            type="com.sergeenko.alexey.redsofttesttask.fragments.ProductPressHandler" />
+            type="com.sergeenko.alexey.redsofttesttask.handlers.ProductPressHandler" />
 
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="12dp"
+        android:layout_marginEnd="24dp"
         android:layout_marginBottom="16dp"
         android:background="@drawable/product_bg">
 
         <ImageView
             android:id="@+id/product_image"
             android:layout_width="100dp"
-            android:layout_height="130dp"
+            android:layout_height="150dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            app:imageUrl="@{product.image_url}"
             android:onClick="@{(view) -> handler.openProduct(context, product)}"
+            app:imageUrl="@{product.image_url}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.05"
@@ -57,8 +57,8 @@
             android:id="@+id/product_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{product.title}"
             android:onClick="@{(view) -> handler.openProduct(context, product)}"
+            android:text="@{product.title}"
             android:textColor="@color/darkGray"
             android:textSize="22sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -84,7 +84,7 @@
             android:id="@+id/product_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{String.valueOf(product.price) + @string/money_symbol}"
+            android:text="@{product.getFormattedPrice()}"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="@+id/product_image"
@@ -99,18 +99,18 @@
             android:id="@+id/not_in_basket"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:visibility="@{product.inBasket ? View.GONE : View.VISIBLE}"
             app:layout_constraintBottom_toBottomOf="@+id/product_price"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.95"
-            android:visibility="@{product.inBasket ? View.GONE : View.VISIBLE}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/product_price">
 
             <ImageButton
                 android:id="@+id/add_to_basket_button"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:backgroundTint="@color/colorPrimaryDark"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:background="@drawable/button_background"
                 android:onClick="@{(view) -> handler.addToBasket(product)}"
                 android:scaleType="centerInside"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -125,12 +125,12 @@
             android:id="@+id/in_basket"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:background="@color/colorPrimaryDark"
+            android:background="@drawable/button_background"
+            android:visibility="@{product.inBasket ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toBottomOf="@+id/product_price"
             app:layout_constraintEnd_toEndOf="@+id/not_in_basket"
             app:layout_constraintHorizontal_bias="1"
             app:layout_constraintStart_toEndOf="@+id/product_price"
-            android:visibility="@{product.inBasket ? View.VISIBLE : View.GONE}"
             app:layout_constraintTop_toTopOf="@+id/product_price">
 
             <TextView
@@ -147,7 +147,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.5" />
 
             <TextView
                 android:id="@+id/plus_text"
@@ -170,7 +171,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:text="@{String.valueOf(product.basketAmount) + @string/item_count_desc}"
+                android:text="@{product.formattedAbout}"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"

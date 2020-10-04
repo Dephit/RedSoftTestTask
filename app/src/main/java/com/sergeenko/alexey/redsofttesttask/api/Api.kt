@@ -1,12 +1,11 @@
 package com.sergeenko.alexey.redsofttesttask.api
 
-import android.widget.ImageView
-import androidx.databinding.BindingAdapter
-import com.sergeenko.alexey.redsofttesttask.R
-import com.squareup.picasso.Picasso
+import com.sergeenko.alexey.redsofttesttask.dataClasses.CategoryResponse
+import com.sergeenko.alexey.redsofttesttask.dataClasses.ProductResponse
+import com.sergeenko.alexey.redsofttesttask.dataClasses.Products
 import retrofit2.Call
-import retrofit2.Response
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 
@@ -21,20 +20,12 @@ interface RedSoftApi {
         @Query("maxItems") maxItems: Int = 15,
         @Query("sort") sort: String? = null
         ): Call<Products>
-}
 
-const val sortMinusPrice = "-price"
-const val sortPrice = "price"
-const val sortTitle = "title"
-const val sortMinusTitle = "-title"
-const val pageSize = 20
+    @GET("/api/v1/products/{productId}")
+    fun getProduct(
+        @Path("productId") productId: Int? = null,
+    ): Call<ProductResponse>
 
-@BindingAdapter("imageUrl")
-fun loadImage(imageView: ImageView, v: String?):Unit {
-    Picasso
-        .with(imageView.context)
-        .load(v)
-        .fit()
-        .placeholder(R.drawable.no_imge)
-        .into(imageView)
+    @GET("/api/v1/categories")
+    fun getCategory(): Call<CategoryResponse>
 }
