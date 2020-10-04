@@ -4,7 +4,7 @@
     <string name="refresh">Обновить список</string>
     <string name="no_category">Категория неизвестна</string>
     <string name="i_search"> Я ищю</string>
-
-
-
+    <string name="minus">-</string>
+    <string name="plus">+</string>
+    <string name="in_basket">В корзину</string>
 </resources>

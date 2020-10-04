@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.sergeenko.alexey.redsofttesttask.R
 import com.sergeenko.alexey.redsofttesttask.viewModels.ProductListViewModel
 import com.sergeenko.alexey.redsofttesttask.adapters.ProductAdapter
-import kotlinx.android.synthetic.main.product_list_fragment.*
+import kotlinx.android.synthetic.main.product_list.*
 import kotlinx.android.synthetic.main.search.view.*
 
 
@@ -21,7 +21,7 @@ class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.product_list_fragment)
+        setContentView(R.layout.product_list)
         setViewModel()
         setUserAdapter()
         setEventListeners()
