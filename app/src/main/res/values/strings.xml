@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">RedsoftTestTask</string>
+    <string name="category">Категория</string>
+    <string name="refresh">Не удалось загрузить данные, нажмите для обновления</string>
+    <string name="no_category">Категория неизвестна</string>
+    <string name="money_symbol"> ₽</string>
+    <string name="i_search"> Я ищю</string>
+    <string name="item_count_desc">шт</string>
+
+
+</resources>
